@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,28 @@
     <title>T Vijay Karthik | Digital Marketing Portfolio</title>
 
     <meta name="description"
-          content="T Vijay Karthik - Digital Marketing Fresher Portfolio">
+        content="T Vijay Karthik - Digital Marketing Fresher Portfolio">
 
     <style>
 
-        /* =========================
-           BASIC RESET
-        ========================== */
+        /* =====================================================
+           GLOBAL
+        ====================================================== */
+
+        :root {
+            --navy: #081426;
+            --navy2: #102a56;
+            --blue: #315efb;
+            --cyan: #12d8c5;
+            --purple: #8b5cf6;
+            --orange: #ff7a45;
+            --white: #ffffff;
+            --light: #f5f8ff;
+            --text: #17233c;
+            --muted: #68758c;
+            --border: rgba(20, 40, 80, 0.10);
+            --shadow: 0 20px 60px rgba(8, 20, 38, 0.10);
+        }
 
         * {
             margin: 0;
@@ -27,9 +43,10 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #17233c;
+            background: var(--light);
+            color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -41,6 +58,10 @@
             display: block;
         }
 
+        button {
+            font-family: inherit;
+        }
+
         .container {
             width: 92%;
             max-width: 1150px;
@@ -48,313 +69,523 @@
         }
 
 
-        /* =========================
-           NAVBAR
-        ========================== */
+        /* =====================================================
+           SCROLL PROGRESS
+        ====================================================== */
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(
+                90deg,
+                var(--cyan),
+                var(--blue),
+                var(--purple)
+            );
+            z-index: 9999;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ====================================================== */
 
         nav {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255,255,255,0.96);
-            border-bottom: 1px solid #e4e8f0;
-            backdrop-filter: blur(10px);
+
+            background: rgba(255, 255, 255, 0.88);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid var(--border);
         }
 
         .navbar {
             min-height: 72px;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             gap: 20px;
         }
 
         .logo {
+            color: var(--navy);
             font-size: 24px;
             font-weight: 900;
-            color: #102a56;
         }
 
         .logo span {
-            color: #10a7a0;
+            color: var(--cyan);
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 26px;
             list-style: none;
         }
 
         .nav-links a {
-            color: #17233c;
+            position: relative;
+
+            color: var(--text);
             font-size: 14px;
             font-weight: 700;
+
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #315efb;
+        .nav-links a::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 2px;
+
+            background: var(--cyan);
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
 
 
-        /* =========================
+        /* =====================================================
            HERO
-        ========================== */
+        ====================================================== */
 
         .hero {
             min-height: 680px;
+
             display: flex;
             align-items: center;
 
+            padding: 90px 0;
+
+            position: relative;
+            overflow: hidden;
+
             background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(49, 94, 251, 0.18),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 10% 80%,
+                    rgba(18, 216, 197, 0.15),
+                    transparent 30%
+                ),
+
                 linear-gradient(
                     135deg,
-                    #edf3ff,
+                    #eef4ff,
                     #ffffff,
-                    #effffc
+                    #edfffb
                 );
+        }
 
-            padding: 80px 0;
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background: rgba(139, 92, 246, 0.08);
+
+            top: -180px;
+            right: -120px;
+
+            animation: float 8s ease-in-out infinite;
         }
 
         .hero-content {
             display: grid;
+
             grid-template-columns: 1.3fr 0.7fr;
+
             align-items: center;
+
             gap: 60px;
+
+            position: relative;
+            z-index: 2;
         }
 
         .badge {
             display: inline-block;
-            background: #e8efff;
-            color: #315efb;
-            padding: 9px 16px;
+
+            padding: 10px 17px;
+
             border-radius: 30px;
+
+            color: var(--blue);
+
+            background: rgba(49, 94, 251, 0.09);
+
+            border: 1px solid rgba(49, 94, 251, 0.15);
+
             font-size: 12px;
+
             font-weight: 900;
+
             letter-spacing: 1px;
         }
 
         .hero h1 {
-            font-size: clamp(45px, 7vw, 75px);
+            font-size: clamp(45px, 7vw, 78px);
+
             line-height: 1;
-            margin: 20px 0;
-            color: #102a56;
+
+            margin: 22px 0;
+
+            color: var(--navy);
         }
 
         .hero h1 span {
-            color: #10a7a0;
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--blue),
+                    var(--purple),
+                    var(--cyan)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
         }
 
         .hero h2 {
-            color: #ff7438;
-            font-size: 25px;
+            color: var(--orange);
+
+            font-size: 24px;
+
             margin-bottom: 15px;
         }
 
         .hero p {
             max-width: 700px;
-            color: #657089;
+
+            color: var(--muted);
+
             font-size: 18px;
         }
 
         .buttons {
             display: flex;
+
             gap: 15px;
+
             flex-wrap: wrap;
+
             margin-top: 28px;
         }
 
         .btn {
             display: inline-block;
-            padding: 13px 22px;
-            border-radius: 12px;
+
+            padding: 14px 23px;
+
+            border-radius: 13px;
+
             font-weight: 800;
+
             transition: 0.3s;
         }
 
         .btn-primary {
-            background: #102a56;
             color: white;
-        }
-
-        .btn-primary:hover {
-            background: #315efb;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #102a56;
-            border: 1px solid #dce2ed;
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            border-color: #315efb;
-        }
-
-
-        /* HERO CARD */
-
-        .profile-card {
-            background: white;
-            border-radius: 30px;
-            padding: 18px;
-            box-shadow: 0 20px 55px rgba(16,42,86,0.12);
-            transform: rotate(2deg);
-        }
-
-        .profile-card-inner {
-            min-height: 350px;
-            border-radius: 23px;
 
             background:
                 linear-gradient(
+                    135deg,
+                    var(--blue),
+                    var(--purple)
+                );
+
+            box-shadow:
+                0 10px 25px rgba(49, 94, 251, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 16px 35px rgba(49, 94, 251, 0.35);
+        }
+
+        .btn-secondary {
+            color: var(--navy);
+
+            background: white;
+
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-4px);
+
+            border-color: var(--cyan);
+        }
+
+
+        /* =====================================================
+           PROFILE CARD
+        ====================================================== */
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.65);
+
+            border-radius: 30px;
+
+            padding: 16px;
+
+            box-shadow: var(--shadow);
+
+            transform: rotate(2deg);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-card-inner {
+            min-height: 370px;
+
+            border-radius: 24px;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(18, 216, 197, 0.3),
+                    transparent 30%
+                ),
+
+                linear-gradient(
                     145deg,
-                    #102a56,
-                    #315efb
+                    var(--navy),
+                    var(--blue),
+                    var(--purple)
                 );
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             text-align: center;
 
             color: white;
+
             padding: 30px;
         }
 
         .initials {
-            font-size: 80px;
+            font-size: 90px;
+
             font-weight: 900;
+
+            letter-spacing: -5px;
         }
 
         .profile-card h3 {
             font-size: 25px;
+
             margin-top: 10px;
         }
 
         .profile-card p {
             color: #dce7ff;
+
             margin-top: 5px;
         }
 
 
-        /* =========================
-           SECTION
-        ========================== */
+        /* =====================================================
+           SECTIONS
+        ====================================================== */
 
         section {
-            padding: 80px 0;
+            padding: 90px 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 45px;
+
+            margin-bottom: 48px;
         }
 
         .section-number {
-            color: #10a7a0;
+            color: var(--cyan);
+
             font-size: 13px;
+
             font-weight: 900;
+
             letter-spacing: 2px;
+
             text-transform: uppercase;
         }
 
         .section-title h2 {
-            color: #102a56;
+            color: var(--navy);
+
             font-size: 40px;
+
             margin: 7px 0;
         }
 
         .section-title p {
-            color: #657089;
+            color: var(--muted);
         }
 
 
-        /* =========================
+        /* =====================================================
            BIO
-        ========================== */
+        ====================================================== */
 
         .bio-grid {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 30px;
         }
 
         .card {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
+
             padding: 32px;
+
             border-radius: 23px;
-            border: 1px solid #e4e8f0;
-            box-shadow: 0 15px 40px rgba(16,42,86,0.07);
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            transition: 0.35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
         }
 
         .card h3 {
-            color: #102a56;
+            color: var(--navy);
+
             font-size: 23px;
+
             margin-bottom: 15px;
         }
 
         .card p {
-            color: #657089;
+            color: var(--muted);
         }
 
         .summary-card {
-            border-left: 5px solid #ff7438;
+            border-left: 5px solid var(--orange);
         }
 
 
-        /* =========================
+        /* =====================================================
            EDUCATION
-        ========================== */
+        ====================================================== */
 
         .education {
-            background: #ffffff;
+            background: white;
         }
 
         .education-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 22px;
         }
 
         .education-card {
-            background: #f9fbff;
-            border: 1px solid #e4e8f0;
+            background:
+                linear-gradient(
+                    145deg,
+                    #f9fbff,
+                    #ffffff
+                );
+
+            border: 1px solid var(--border);
+
             border-radius: 22px;
+
             padding: 28px;
-            transition: 0.3s;
+
+            transition: 0.35s;
         }
 
         .education-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(16,42,86,0.10);
+            transform: translateY(-8px);
+
+            box-shadow: var(--shadow);
         }
 
         .education-year {
-            color: #ff7438;
+            color: var(--orange);
+
             font-weight: 900;
-            font-size: 14px;
         }
 
         .education-card h3 {
-            color: #102a56;
+            color: var(--navy);
+
             margin: 8px 0;
         }
 
         .education-card p {
-            color: #657089;
+            color: var(--muted);
         }
 
 
-        /* =========================
+        /* =====================================================
            SKILLS
-        ========================== */
+        ====================================================== */
 
         .skills-section {
-            background: #101f40;
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(139, 92, 246, 0.25),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #081426,
+                    #102a56
+                );
+
             color: white;
         }
 
@@ -368,70 +599,124 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 17px;
         }
 
         .skill {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 18px;
-            padding: 22px;
+            padding: 23px;
+
             text-align: center;
+
             font-weight: 900;
-            transition: 0.3s;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(10px);
+
+            transition: 0.35s;
         }
 
         .skill:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-5px);
+            transform:
+                translateY(-7px)
+                scale(1.02);
+
+            background:
+                rgba(255, 255, 255, 0.14);
+
+            border-color:
+                var(--cyan);
         }
 
         .skill small {
             display: block;
+
             color: #aebbd4;
+
             font-weight: 500;
+
             margin-top: 5px;
         }
 
 
-        /* =========================
-           POSTER PORTFOLIO
-        ========================== */
+        /* =====================================================
+           POSTERS
+        ====================================================== */
 
         .poster-section {
-            background: #ffffff;
+            background: white;
         }
 
         .poster-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 30px;
         }
 
         .poster-card {
             background: white;
-            border: 1px solid #e2e7f0;
+
+            border: 1px solid var(--border);
+
             border-radius: 25px;
+
             overflow: hidden;
-            box-shadow: 0 18px 45px rgba(16,42,86,0.10);
-            transition: 0.3s;
+
+            box-shadow: var(--shadow);
+
+            transform-style: preserve-3d;
+
+            transition: 0.35s;
         }
 
         .poster-card:hover {
-            transform: translateY(-8px);
+            transform:
+                translateY(-10px);
+
+            box-shadow:
+                0 30px 70px
+                rgba(8, 20, 38, 0.16);
         }
 
         .poster-image {
-            background: #edf1f7;
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf3ff,
+                    #f3fffc
+                );
+
             padding: 15px;
         }
 
         .poster-image img {
             width: 100%;
+
             max-height: 650px;
+
             object-fit: contain;
+
             border-radius: 15px;
+
+            transition: 0.4s;
+        }
+
+        .poster-card:hover
+        .poster-image img {
+            transform: scale(1.025);
         }
 
         .poster-info {
@@ -439,26 +724,38 @@
         }
 
         .poster-label {
-            color: #10a7a0;
+            color: var(--cyan);
+
             font-size: 12px;
+
             font-weight: 900;
+
             text-transform: uppercase;
+
             letter-spacing: 1px;
         }
 
         .poster-info h3 {
-            color: #102a56;
+            color: var(--navy);
+
             font-size: 20px;
+
             margin-top: 5px;
         }
 
 
-        /* =========================
+        /* =====================================================
            CONTACT
-        ========================== */
+        ====================================================== */
 
         .contact-section {
             background:
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(49, 94, 251, 0.14),
+                    transparent 30%
+                ),
+
                 linear-gradient(
                     135deg,
                     #edf3ff,
@@ -467,79 +764,209 @@
         }
 
         .contact-box {
-            background: white;
+            background:
+                rgba(255, 255, 255, 0.85);
+
             border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 18px 50px rgba(16,42,86,0.10);
+
+            padding: 42px;
+
+            box-shadow: var(--shadow);
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             gap: 30px;
+
             flex-wrap: wrap;
+
+            backdrop-filter: blur(15px);
+
+            transition: 0.35s;
+        }
+
+        .contact-box:hover {
+            transform: translateY(-5px);
         }
 
         .contact-box h2 {
-            color: #102a56;
-            margin-bottom: 8px;
+            color: var(--navy);
+
+            margin: 8px 0;
         }
 
         .contact-box p {
-            color: #657089;
+            color: var(--muted);
         }
 
 
-        /* =========================
+        /* =====================================================
            FOOTER
-        ========================== */
+        ====================================================== */
 
         footer {
-            background: #0d1c37;
+            background: #06101f;
+
             color: #dce5f5;
-            padding: 40px 0;
+
+            padding: 45px 0;
         }
 
         .footer-content {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             flex-wrap: wrap;
+
             gap: 20px;
         }
 
         .footer-logo {
             font-size: 22px;
+
             font-weight: 900;
         }
 
         .footer-logo span {
-            color: #43d0c8;
+            color: var(--cyan);
         }
 
         .social-links {
             display: flex;
+
             gap: 20px;
         }
 
         .social-links a {
             color: white;
+
             font-weight: 700;
+
+            transition: 0.3s;
         }
 
         .social-links a:hover {
-            color: #43d0c8;
+            color: var(--cyan);
         }
 
         .copyright {
             margin-top: 20px;
+
             color: #91a0bb;
+
             font-size: 13px;
         }
 
 
-        /* =========================
+        /* =====================================================
+           BACK TO TOP
+        ====================================================== */
+
+        #topBtn {
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            width: 48px;
+
+            height: 48px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    var(--purple)
+                );
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform: translateY(20px);
+
+            transition: 0.3s;
+
+            z-index: 2000;
+
+            box-shadow:
+                0 10px 25px
+                rgba(49, 94, 251, 0.30);
+        }
+
+        #topBtn.show {
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateY(0);
+        }
+
+        #topBtn:hover {
+            transform:
+                translateY(-4px)
+                scale(1.05);
+        }
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ====================================================== */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(35px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           ANIMATION
+        ====================================================== */
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(25px);
+            }
+        }
+
+
+        /* =====================================================
            MOBILE
-        ========================== */
+        ====================================================== */
 
         @media (max-width: 900px) {
 
@@ -549,6 +976,7 @@
 
             .profile-card {
                 max-width: 430px;
+
                 margin: auto;
             }
 
@@ -561,7 +989,8 @@
             }
 
             .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .poster-grid {
@@ -569,21 +998,25 @@
             }
         }
 
+
         @media (max-width: 600px) {
 
             .navbar {
                 flex-direction: column;
+
                 padding: 15px 0;
             }
 
             .nav-links {
                 gap: 13px;
+
                 flex-wrap: wrap;
+
                 justify-content: center;
             }
 
             .hero {
-                padding: 55px 0;
+                padding: 60px 0;
             }
 
             .hero h1 {
@@ -595,7 +1028,7 @@
             }
 
             section {
-                padding: 55px 0;
+                padding: 60px 0;
             }
 
             .section-title h2 {
@@ -613,6 +1046,10 @@
             .social-links {
                 flex-wrap: wrap;
             }
+
+            .initials {
+                font-size: 70px;
+            }
         }
 
     </style>
@@ -621,112 +1058,186 @@
 
 <body>
 
+    <!-- SCROLL PROGRESS -->
 
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<nav>
-
-    <div class="container navbar">
-
-        <a href="#home" class="logo">
-            T Vijay <span>Karthik</span>
-        </a>
-
-        <ul class="nav-links">
-
-            <li>
-                <a href="#bio">Bio</a>
-            </li>
-
-            <li>
-                <a href="#education">Education</a>
-            </li>
-
-            <li>
-                <a href="#skills">Skills</a>
-            </li>
-
-            <li>
-                <a href="#posters">Posters</a>
-            </li>
-
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-
-        </ul>
-
-    </div>
-
-</nav>
+    <div class="scroll-progress"></div>
 
 
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
-<!-- =========================
-     HERO
-========================= -->
+    <nav>
 
-<header class="hero" id="home">
+        <div class="container navbar">
 
-    <div class="container hero-content">
-
-        <div>
-
-            <span class="badge">
-                DIGITAL MARKETING FRESHER
-            </span>
-
-            <h1>
+            <a href="#home" class="logo">
                 T Vijay <span>Karthik</span>
-            </h1>
+            </a>
 
-            <h2>
-                SEO • Social Media • Content • Website Marketing
-            </h2>
+            <ul class="nav-links">
 
-            <p>
-                B.Tech Computer Science graduate seeking an
-                entry-level Digital Marketing role. Familiar with
-                SEO, keyword research, social media marketing,
-                content creation, website optimization and
-                basic analytics.
-            </p>
+                <li>
+                    <a href="#bio">Bio</a>
+                </li>
 
-            <div class="buttons">
+                <li>
+                    <a href="#education">Education</a>
+                </li>
 
-                <a href="#posters"
-                   class="btn btn-primary">
-                    View My Work
-                </a>
+                <li>
+                    <a href="#skills">Skills</a>
+                </li>
 
-                <a href="#contact"
-                   class="btn btn-secondary">
-                    Contact Me
-                </a>
+                <li>
+                    <a href="#posters">Posters</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <header class="hero" id="home">
+
+        <div class="container hero-content">
+
+            <div>
+
+                <span class="badge">
+                    DIGITAL MARKETING FRESHER
+                </span>
+
+                <h1>
+                    T Vijay <span>Karthik</span>
+                </h1>
+
+                <h2>
+                    SEO • Social Media • Content • Website Marketing
+                </h2>
+
+                <p>
+                    B.Tech Computer Science graduate seeking an
+                    entry-level Digital Marketing role. Familiar
+                    with SEO, keyword research, social media
+                    marketing, content creation, website
+                    optimization and basic analytics.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#posters"
+                       class="btn btn-primary">
+                        View My Work
+                    </a>
+
+                    <a href="#contact"
+                       class="btn btn-secondary">
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-card">
+
+                <div class="profile-card-inner">
+
+                    <div>
+
+                        <div class="initials">
+                            TK
+                        </div>
+
+                        <h3>
+                            Digital Marketing
+                        </h3>
+
+                        <p>
+                            Creative • Analytical • Quick Learner
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
+    </header>
 
-        <div class="profile-card">
 
-            <div class="profile-card-inner">
+    <!-- =====================================================
+         BIO
+    ====================================================== -->
 
-                <div>
+    <section id="bio">
 
-                    <div class="initials">
-                        TK
-                    </div>
+        <div class="container">
+
+            <div class="section-title">
+
+                <div class="section-number">
+                    01 • MY BIO
+                </div>
+
+                <h2>
+                    About Me
+                </h2>
+
+                <p>
+                    A simple introduction to my profile and career goal.
+                </p>
+
+            </div>
+
+
+            <div class="bio-grid">
+
+                <div class="card">
 
                     <h3>
-                        Digital Marketing
+                        Professional Summary
                     </h3>
 
                     <p>
-                        Creative • Analytical • Quick Learner
+                        B.Tech Computer Science graduate seeking an
+                        entry-level Digital Marketing role. Familiar
+                        with SEO, keyword research, social media
+                        marketing, content creation, website
+                        optimization, and basic analytics. Quick
+                        learner with good communication and analytical
+                        skills.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        My Career Goal
+                    </h3>
+
+                    <p>
+                        I am looking for an opportunity where I can
+                        apply my digital marketing knowledge, learn
+                        industry tools, create useful content and
+                        contribute to website and social media
+                        marketing activities.
                     </p>
 
                 </div>
@@ -735,600 +1246,812 @@
 
         </div>
 
-    </div>
+    </section>
 
-</header>
 
+    <!-- =====================================================
+         EDUCATION
+    ====================================================== -->
 
+    <section class="education" id="education">
 
-<!-- =========================
-     BIO
-========================= -->
+        <div class="container">
 
-<section id="bio">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="section-number">
-                01 • MY BIO
-            </div>
-
-            <h2>
-                About Me
-            </h2>
-
-            <p>
-                A simple introduction to my profile and career goal.
-            </p>
-
-        </div>
-
-
-        <div class="bio-grid">
-
-            <div class="card summary-card">
-
-                <h3>
-                    Professional Summary
-                </h3>
-
-                <p>
-                    B.Tech Computer Science graduate seeking an
-                    entry-level Digital Marketing role. Familiar
-                    with SEO, keyword research, social media
-                    marketing, content creation, website
-                    optimization, and basic analytics. Quick
-                    learner with good communication and analytical
-                    skills.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    My Career Goal
-                </h3>
-
-                <p>
-                    I am looking for an opportunity where I can
-                    apply my digital marketing knowledge, learn
-                    industry tools, create useful content and
-                    contribute to website and social media
-                    marketing activities.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     EDUCATION
-========================= -->
-
-<section class="education"
-         id="education">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="section-number">
-                02 • EDUCATION
-            </div>
-
-            <h2>
-                Academic Background
-            </h2>
-
-            <p>
-                My educational foundation in computer science
-                and technology.
-            </p>
-
-        </div>
-
-
-        <div class="education-grid">
-
-
-            <div class="education-card">
-
-                <div class="education-year">
-                    2021 – 2025
-                </div>
-
-                <h3>
-                    B.Tech — Computer Science Engineering
-                </h3>
-
-                <p>
-                    KITS College of Engineering, Markapur
-                </p>
-
-                <p>
-                    <strong>
-                        CGPA: 8.28 / 10
-                    </strong>
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-year">
-                    2019 – 2021
-                </div>
-
-                <h3>
-                    Intermediate — MPC
-                </h3>
-
-                <p>
-                    Andhra Pradesh Board of Intermediate Education
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-year">
-                    2018 – 2019
-                </div>
-
-                <h3>
-                    SSC
-                </h3>
-
-                <p>
-                    Andhra Pradesh Board of Secondary Education
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     SKILLS
-========================= -->
-
-<section class="skills-section"
-         id="skills">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="section-number">
-                03 • SKILLS
-            </div>
-
-            <h2>
-                My Digital Marketing Skills
-            </h2>
-
-            <p>
-                Core skills for entry-level digital marketing work.
-            </p>
-
-        </div>
-
-
-        <div class="skills-grid">
-
-
-            <div class="skill">
-                SEO
-                <small>
-                    Search visibility & optimization
-                </small>
-            </div>
-
-
-            <div class="skill">
-                Keyword Research
-                <small>
-                    Relevant search terms
-                </small>
-            </div>
-
-
-            <div class="skill">
-                On-Page SEO
-                <small>
-                    Titles, headings & content
-                </small>
-            </div>
-
-
-            <div class="skill">
-                Social Media Marketing
-                <small>
-                    Posts & promotion
-                </small>
-            </div>
-
-
-            <div class="skill">
-                Content Marketing
-                <small>
-                    Content planning
-                </small>
-            </div>
-
-
-            <div class="skill">
-                Website Optimization
-                <small>
-                    Basic improvements
-                </small>
-            </div>
-
-
-            <div class="skill">
-                Google Analytics
-                <small>
-                    Basic analytics
-                </small>
-            </div>
-
-
-            <div class="skill">
-                Google Search Console
-                <small>
-                    Search performance
-                </small>
-            </div>
-
-
-            <div class="skill">
-                HTML
-                <small>
-                    Website structure
-                </small>
-            </div>
-
-
-            <div class="skill">
-                CSS
-                <small>
-                    Website styling
-                </small>
-            </div>
-
-
-            <div class="skill">
-                JavaScript
-                <small>
-                    Basic web scripting
-                </small>
-            </div>
-
-
-            <div class="skill">
-                MS Excel
-                <small>
-                    Data handling
-                </small>
-            </div>
-
-
-            <div class="skill">
-                Canva
-                <small>
-                    Poster & creative design
-                </small>
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     POSTER PORTFOLIO
-========================= -->
-
-<section id="posters"
-         class="poster-section">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="section-number">
-                04 • POSTER PORTFOLIO
-            </div>
-
-            <h2>
-                Creative Work & Posters
-            </h2>
-
-            <p>
-                Selected social media, marketing and creative
-                design work.
-            </p>
-
-        </div>
-
-
-        <div class="poster-grid">
-
-
-            <!-- POSTER 1 -->
-
-            <article class="poster-card">
-
-                <div class="poster-image">
-
-                 <img src="ADVINCE%20BOOKS.png" alt="Advince Books Poster" width="400">
-
-                </div>
-
-                <div class="poster-info">
-
-                    <div class="poster-label">
-                        Social Media Poster
-                    </div>
-
-                    <h3>
-                        Advince Books — Reading & Learning
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- POSTER 2 -->
-
-            <article class="poster-card">
-
-                <div class="poster-image">
-
-                  <img src="select.jpeg" alt="Creative Poster" width="400">
-
-                </div>
-
-                <div class="poster-info">
-
-                    <div class="poster-label">
-                        Marketing Creative
-                    </div>
-
-                    <h3>
-                        Advince Books — Discover. Read. Grow.
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- POSTER 3 -->
-
-            <article class="poster-card">
-
-                <div class="poster-image">
-
-                  <img src="Training.png" alt="Training Poster" width="400">
-
-                </div>
-
-                <div class="poster-info">
-
-                    <div class="poster-label">
-                        Technology Poster
-                    </div>
-
-                    <h3>
-                        RBG Technologies — Playwright Automation Testing
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- POSTER 4 -->
-
-            <article class="poster-card">
-
-                <div class="poster-image">
-
-                   <img src="4image.jpeg" alt="Poster 1" width="400">
-
-                </div>
-
-                <div class="poster-info">
-
-                    <div class="poster-label">
-                        Creative Design
-                    </div>
-
-                    <h3>
-                        Vijay Creations — Thumbnail & Poster Design
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-
-         
-              
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section id="contact"
-         class="contact-section">
-
-    <div class="container">
-
-        <div class="contact-box">
-
-            <div>
+            <div class="section-title">
 
                 <div class="section-number">
-                    05 • CONTACT
+                    02 • EDUCATION
                 </div>
 
                 <h2>
-                    Let's Connect
+                    Academic Background
                 </h2>
 
                 <p>
-                    Open to entry-level Digital Marketing
-                    opportunities and internships.
+                    My educational foundation in computer science
+                    and technology.
                 </p>
 
             </div>
 
 
-            <div class="buttons">
-
-                <!-- CHANGE YOUR EMAIL HERE -->
-
-                <a class="btn btn-primary"
-                   href="mailto:YOUR_EMAIL@gmail.com">
-
-                    Email Me
-
-                </a>
+            <div class="education-grid">
 
 
-                <!-- CHANGE LINKEDIN HERE -->
+                <div class="education-card">
 
-                <a class="btn btn-secondary"
-                   href="https://www.linkedin.com/"
-                   target="_blank">
+                    <div class="education-year">
+                        2021 – 2025
+                    </div>
 
-                    LinkedIn
+                    <h3>
+                        B.Tech — Computer Science Engineering
+                    </h3>
 
-                </a>
+                    <p>
+                        KITS College of Engineering, Markapur
+                    </p>
+
+                    <p>
+                        <strong>
+                            CGPA: 8.28 / 10
+                        </strong>
+                    </p>
+
+                </div>
+
+
+                <div class="education-card">
+
+                    <div class="education-year">
+                        2019 – 2021
+                    </div>
+
+                    <h3>
+                        Intermediate — MPC
+                    </h3>
+
+                    <p>
+                        Andhra Pradesh Board of Intermediate Education
+                    </p>
+
+                </div>
+
+
+                <div class="education-card">
+
+                    <div class="education-year">
+                        2018 – 2019
+                    </div>
+
+                    <h3>
+                        SSC
+                    </h3>
+
+                    <p>
+                        Andhra Pradesh Board of Secondary Education
+                    </p>
+
+                </div>
+
 
             </div>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- =====================================================
+         SKILLS
+    ====================================================== -->
 
-<!-- =========================
-     FOOTER
-========================= -->
+    <section class="skills-section" id="skills">
 
-<footer>
+        <div class="container">
 
-    <div class="container">
+            <div class="section-title">
 
-        <div class="footer-content">
+                <div class="section-number">
+                    03 • SKILLS
+                </div>
 
-            <div class="footer-logo">
+                <h2>
+                    My Digital Marketing Skills
+                </h2>
 
-                T Vijay <span>Karthik</span>
+                <p>
+                    Core skills for entry-level digital marketing work.
+                </p>
 
             </div>
 
 
-            <div class="social-links">
+            <div class="skills-grid">
 
-                <!-- Replace # with your real profile links -->
 
-                <a href="#">
-                    Instagram
-                </a>
+                <div class="skill">
+                    SEO
+                    <small>
+                        Search visibility & optimization
+                    </small>
+                </div>
 
-                <a href="#">
-                    LinkedIn
-                </a>
 
-                <a href="#">
-                    Snapchat
-                </a>
+                <div class="skill">
+                    Keyword Research
+                    <small>
+                        Relevant search terms
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    On-Page SEO
+                    <small>
+                        Titles, headings & content
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    Social Media Marketing
+                    <small>
+                        Posts & promotion
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    Content Marketing
+                    <small>
+                        Content planning
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    Website Optimization
+                    <small>
+                        Basic improvements
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    Google Analytics
+                    <small>
+                        Basic analytics
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    Google Search Console
+                    <small>
+                        Search performance
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    HTML
+                    <small>
+                        Website structure
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    CSS
+                    <small>
+                        Website styling
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    JavaScript
+                    <small>
+                        Basic web scripting
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    MS Excel
+                    <small>
+                        Data handling
+                    </small>
+                </div>
+
+
+                <div class="skill">
+                    Canva
+                    <small>
+                        Poster & creative design
+                    </small>
+                </div>
+
 
             </div>
 
         </div>
 
+    </section>
 
-        <div class="copyright">
 
-            © 2026 T Vijay Karthik
-            • Digital Marketing Portfolio
+    <!-- =====================================================
+         POSTER PORTFOLIO
+    ====================================================== -->
+
+    <section id="posters" class="poster-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <div class="section-number">
+                    04 • POSTER PORTFOLIO
+                </div>
+
+                <h2>
+                    Creative Work & Posters
+                </h2>
+
+                <p>
+                    Selected social media, marketing and creative
+                    design work.
+                </p>
+
+            </div>
+
+
+            <div class="poster-grid">
+
+
+                <!-- POSTER 1 -->
+
+                <article class="poster-card">
+
+                    <div class="poster-image">
+
+                        <img
+                            src="ADVINCE%20BOOKS.png"
+                            alt="Advince Books Poster"
+                        >
+
+                    </div>
+
+                    <div class="poster-info">
+
+                        <div class="poster-label">
+                            Social Media Poster
+                        </div>
+
+                        <h3>
+                            Advince Books — Reading & Learning
+                        </h3>
+
+                    </div>
+
+                </article>
+
+
+                <!-- POSTER 2 -->
+
+                <article class="poster-card">
+
+                    <div class="poster-image">
+
+                        <img
+                            src="select.jpeg"
+                            alt="Advince Books Creative Poster"
+                        >
+
+                    </div>
+
+                    <div class="poster-info">
+
+                        <div class="poster-label">
+                            Marketing Creative
+                        </div>
+
+                        <h3>
+                            Advince Books — Discover. Read. Grow.
+                        </h3>
+
+                    </div>
+
+                </article>
+
+
+                <!-- POSTER 3 -->
+
+                <article class="poster-card">
+
+                    <div class="poster-image">
+
+                        <img
+                            src="Training.png"
+                            alt="Training Poster"
+                        >
+
+                    </div>
+
+                    <div class="poster-info">
+
+                        <div class="poster-label">
+                            Technology Poster
+                        </div>
+
+                        <h3>
+                            RBG Technologies — Playwright Automation Testing
+                        </h3>
+
+                    </div>
+
+                </article>
+
+
+                <!-- POSTER 4 -->
+
+                <article class="poster-card">
+
+                    <div class="poster-image">
+
+                        <img
+                            src="4image.jpeg"
+                            alt="Creative Poster Design"
+                        >
+
+                    </div>
+
+                    <div class="poster-info">
+
+                        <div class="poster-label">
+                            Creative Design
+                        </div>
+
+                        <h3>
+                            Vijay Creations — Thumbnail & Poster Design
+                        </h3>
+
+                    </div>
+
+                </article>
+
+
+            </div>
 
         </div>
 
-    </div>
-
-</footer>
+    </section>
 
 
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
 
-<!-- =========================
-     SIMPLE JAVASCRIPT
-========================= -->
+    <section id="contact" class="contact-section">
 
-<script>
+        <div class="container">
 
-    // Smooth navigation
+            <div class="contact-box">
 
-    document.querySelectorAll(
-        'a[href^="#"]'
-    ).forEach(function(link) {
+                <div>
 
-        link.addEventListener(
+                    <div class="section-number">
+                        05 • CONTACT
+                    </div>
+
+                    <h2>
+                        Let's Connect
+                    </h2>
+
+                    <p>
+                        Open to entry-level Digital Marketing
+                        opportunities and internships.
+                    </p>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <!-- REPLACE EMAIL -->
+
+                    <a
+                        class="btn btn-primary"
+                        href="mailto:YOUR_EMAIL@gmail.com"
+                    >
+                        Email Me
+                    </a>
+
+
+                    <!-- REPLACE LINKEDIN -->
+
+                    <a
+                        class="btn btn-secondary"
+                        href="https://www.linkedin.com/"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-logo">
+                    T Vijay <span>Karthik</span>
+                </div>
+
+
+                <div class="social-links">
+
+                    <!-- REPLACE THESE LINKS -->
+
+                    <a href="#">
+                        Instagram
+                    </a>
+
+                    <a href="#">
+                        LinkedIn
+                    </a>
+
+                    <a href="#">
+                        Snapchat
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+                © 2026 T Vijay Karthik • Digital Marketing Portfolio
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         BACK TO TOP
+    ====================================================== -->
+
+    <button
+        id="topBtn"
+        aria-label="Back to top"
+    >
+        ↑
+    </button>
+
+
+    <!-- =====================================================
+         ADVANCED JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =========================================
+           SCROLL PROGRESS
+        ========================================== */
+
+        const progressBar =
+            document.querySelector(".scroll-progress");
+
+        window.addEventListener("scroll", function () {
+
+            const scrollTop =
+                window.scrollY;
+
+            const documentHeight =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+
+            const progress =
+                documentHeight > 0
+                    ? (scrollTop / documentHeight) * 100
+                    : 0;
+
+            progressBar.style.width =
+                progress + "%";
+
+        });
+
+
+        /* =========================================
+           SCROLL REVEAL
+        ========================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".card, .education-card, .skill, .poster-card, .contact-box"
+            );
+
+        const revealObserver =
+            new IntersectionObserver(
+
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "reveal",
+                                "show"
+                            );
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        revealElements.forEach(function (element) {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* =========================================
+           ACTIVE NAVIGATION
+        ========================================== */
+
+        const sections =
+            document.querySelectorAll(
+                "section[id], header[id]"
+            );
+
+        const navLinks =
+            document.querySelectorAll(
+                ".nav-links a"
+            );
+
+
+        window.addEventListener("scroll", function () {
+
+            let currentSection = "";
+
+            sections.forEach(function (section) {
+
+                const sectionTop =
+                    section.offsetTop - 130;
+
+                if (
+                    window.scrollY >= sectionTop
+                ) {
+                    currentSection =
+                        section.id;
+                }
+
+            });
+
+
+            navLinks.forEach(function (link) {
+
+                link.classList.remove("active");
+
+                if (
+                    link.getAttribute("href") ===
+                    "#" + currentSection
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+
+        /* =========================================
+           SMOOTH NAVIGATION
+        ========================================== */
+
+        document
+            .querySelectorAll('a[href^="#"]')
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function (event) {
+
+                        const target =
+                            document.querySelector(
+                                this.getAttribute("href")
+                            );
+
+                        if (target) {
+
+                            event.preventDefault();
+
+                            target.scrollIntoView({
+
+                                behavior: "smooth",
+
+                                block: "start"
+
+                            });
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================
+           BACK TO TOP
+        ========================================== */
+
+        const topBtn =
+            document.getElementById("topBtn");
+
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 500) {
+
+                topBtn.classList.add("show");
+
+            } else {
+
+                topBtn.classList.remove("show");
+
+            }
+
+        });
+
+
+        topBtn.addEventListener(
             "click",
-            function(event) {
+            function () {
 
-                const target =
-                    document.querySelector(
-                        this.getAttribute("href")
-                    );
+                window.scrollTo({
 
-                if (target) {
+                    top: 0,
 
-                    event.preventDefault();
+                    behavior: "smooth"
 
-                    target.scrollIntoView({
+                });
+
+            }
+        );
+
+
+        /* =========================================
+           POSTER 3D EFFECT
+        ========================================== */
+
+        document
+            .querySelectorAll(".poster-card")
+            .forEach(function (card) {
+
+                card.addEventListener(
+                    "mousemove",
+                    function (event) {
+
+                        const rect =
+                            card.getBoundingClientRect();
+
+                        const x =
+                            event.clientX -
+                            rect.left;
+
+                        const y =
+                            event.clientY -
+                            rect.top;
+
+                        const centerX =
+                            rect.width / 2;
+
+                        const centerY =
+                            rect.height / 2;
+
+                        const rotateX =
+                            ((y - centerY) /
+                                centerY) * -3;
+
+                        const rotateY =
+                            ((x - centerX) /
+                                centerX) * 3;
+
+                        card.style.transform =
+                            `
+                            perspective(900px)
+                            rotateX(${rotateX}deg)
+                            rotateY(${rotateY}deg)
+                            translateY(-8px)
+                            `;
+
+                    }
+                );
+
+
+                card.addEventListener(
+                    "mouseleave",
+                    function () {
+
+                        card.style.transform = "";
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================
+           DYNAMIC YEAR
+        ========================================== */
+
+        const copyright =
+            document.querySelector(".copyright");
+
+        if (copyright) {
+
+            const currentYear =
+                new Date().getFullYear();
+
+            copyright.innerHTML =
+                `
+                © ${currentYear}
+                T Vijay Karthik
+                • Digital Marketing Portfolio
+                `;
+
+        }
+
+
+        /* =========================================
+           KEYBOARD HOME BUTTON
+        ========================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Home") {
+
+                    window.scrollTo({
+
+                        top: 0,
+
                         behavior: "smooth"
+
                     });
 
                 }
@@ -1336,10 +2059,24 @@
             }
         );
 
-    });
 
-</script>
+        /* =========================================
+           PAGE LOAD EFFECT
+        ========================================== */
 
+        window.addEventListener(
+            "load",
+            function () {
+
+                document.body.classList.add(
+                    "page-loaded"
+                );
+
+            }
+        );
+
+    </script>
 
 </body>
+
 </html>
